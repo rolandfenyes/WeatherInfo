@@ -49,4 +49,8 @@ class CityActivity : AppCompatActivity(), CityAdapter.OnCitySelectedListener, Ad
         TODO("Not yet implemented")
     }
 
+    override fun onCityAdded(city: String?) {
+        TODO("Not yet implemented")
+    }
+
 }
