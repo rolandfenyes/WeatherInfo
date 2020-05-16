@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import aut.bme.hu.weatherinfo.R
+import kotlinx.android.synthetic.main.item_city.view.*
 
 class CityAdapter (private val listener: OnCitySelectedListener) : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
