@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CityActivity"
+            android:name=".feature.city.CityActivity"
             android:label="@string/title_activity_city"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

@@ -1,8 +1,9 @@
-package aut.bme.hu.weatherinfo
+package aut.bme.hu.weatherinfo.feature.city
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import aut.bme.hu.weatherinfo.R
 
 import kotlinx.android.synthetic.main.activity_city.*
 
