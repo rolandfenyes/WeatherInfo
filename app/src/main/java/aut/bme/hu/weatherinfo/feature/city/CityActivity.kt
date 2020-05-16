@@ -21,11 +21,6 @@ class CityActivity : AppCompatActivity(), CityAdapter.OnCitySelectedListener, Ad
 
         initFab()
         initRecyclerView()
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
 
     private fun initRecyclerView() {
@@ -39,9 +34,9 @@ class CityActivity : AppCompatActivity(), CityAdapter.OnCitySelectedListener, Ad
     }
 
     private fun initFab() {
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            AddCityDialogFragment()
+                .show(supportFragmentManager, AddCityDialogFragment::class.java.simpleName)
         }
     }
 
@@ -50,7 +45,7 @@ class CityActivity : AppCompatActivity(), CityAdapter.OnCitySelectedListener, Ad
     }
 
     override fun onCityAdded(city: String?) {
-        TODO("Not yet implemented")
+        adapter.addCity(city!!)
     }
 
 }

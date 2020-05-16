@@ -52,5 +52,4 @@ class CityAdapter (private val listener: OnCitySelectedListener) : RecyclerView.
         fun onCitySelected(city: String?)
     }
 
-
 }
