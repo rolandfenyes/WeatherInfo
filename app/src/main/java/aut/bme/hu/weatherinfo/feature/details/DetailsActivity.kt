@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import aut.bme.hu.weatherinfo.R
+import aut.bme.hu.weatherinfo.model.WeatherData
 
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
     companion object {
         private const val TAG = "DetailsActivity"
@@ -13,6 +14,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private var city: String? = null
+    private var weatherData: WeatherData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +36,9 @@ class DetailsActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun getWeatherData(): WeatherData? {
+        return weatherData
     }
 }
