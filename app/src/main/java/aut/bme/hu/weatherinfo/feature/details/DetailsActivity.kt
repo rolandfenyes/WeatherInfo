@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import aut.bme.hu.weatherinfo.R
 import aut.bme.hu.weatherinfo.model.WeatherData
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
@@ -28,7 +30,17 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
     override fun onResume() {
         super.onResume()
-    }
+
+        val detailsPageAdapter = DetailsPagerAdapter(this)
+        mainViewPager.adapter = detailsPageAdapter
+
+        TabLayoutMediator(tab_layout, mainViewPager) { tab, position ->
+            tab.text = when(position) {
+                0 -> getString(R.string.main)
+                1 -> getString(R.string.details)
+                else -> ""
+            }
+        }.attach()    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
