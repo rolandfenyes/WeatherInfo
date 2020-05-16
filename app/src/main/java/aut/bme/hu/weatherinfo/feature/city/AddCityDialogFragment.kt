@@ -1,11 +1,11 @@
 package aut.bme.hu.weatherinfo.feature.city
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import aut.bme.hu.weatherinfo.R
 import kotlinx.android.synthetic.main.dialog_new_city.view.*
