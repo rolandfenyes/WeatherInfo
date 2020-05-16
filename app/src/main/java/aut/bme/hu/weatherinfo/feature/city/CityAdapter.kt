@@ -41,6 +41,10 @@ class CityAdapter (private val listener: OnCitySelectedListener) : RecyclerView.
             itemView.setOnClickListener {
                 listener.onCitySelected(item)
             }
+            itemView.CityItemRemoveButton.setOnClickListener {
+                var index: Int = cities.indexOf(item)
+                removeCity(index)
+            }
         }
         fun bind(newCity: String?) {
             item = newCity
