@@ -1,4 +1,4 @@
-package aut.bme.hu.weatherinfo.feature.city.details
+package aut.bme.hu.weatherinfo.feature.details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

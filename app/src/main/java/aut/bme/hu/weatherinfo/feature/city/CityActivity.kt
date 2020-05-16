@@ -2,11 +2,10 @@ package aut.bme.hu.weatherinfo.feature.city
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import aut.bme.hu.weatherinfo.R
-import aut.bme.hu.weatherinfo.feature.city.details.DetailsActivity
+import aut.bme.hu.weatherinfo.feature.details.DetailsActivity
 
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.content_city.*
