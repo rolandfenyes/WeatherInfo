@@ -1,10 +1,12 @@
 package aut.bme.hu.weatherinfo.feature.city
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import aut.bme.hu.weatherinfo.R
+import aut.bme.hu.weatherinfo.feature.city.details.DetailsActivity
 
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.content_city.*
@@ -41,7 +43,10 @@ class CityActivity : AppCompatActivity(), CityAdapter.OnCitySelectedListener, Ad
     }
 
     override fun onCitySelected(city: String?) {
-        TODO("Not yet implemented")
+        val showDetailsIntent = Intent()
+        showDetailsIntent.setClass(this, DetailsActivity::class.java)
+        showDetailsIntent.putExtra(DetailsActivity.EXTRA_CITY_NAME, city!!)
+        startActivity(showDetailsIntent)
     }
 
     override fun onCityAdded(city: String?) {
