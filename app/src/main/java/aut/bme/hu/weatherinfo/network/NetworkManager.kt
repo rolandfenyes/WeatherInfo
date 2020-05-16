@@ -11,7 +11,7 @@ object NetworkManager {
     private val weatherApi: WeatherApi
 
     private const val SERVICE_URL = "https://api.openweathermap.org"
-    private const val APP_ID = "bb251b14d946dd3d456c67626e5df869"
+    private const val APP_ID = "61b3598d0004ba06c76d3e79d6f6c36f"
 
     init {
         retrofit = Retrofit.Builder()
