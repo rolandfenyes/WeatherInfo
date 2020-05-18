@@ -1,6 +1,7 @@
 package aut.bme.hu.weatherinfo.network
 
-import aut.bme.hu.weatherinfo.model.WeatherData
+import aut.bme.hu.weatherinfo.model.current.WeatherData
+import aut.bme.hu.weatherinfo.model.multipledays.WeatherDataForecast
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -24,5 +25,9 @@ object NetworkManager {
 
     fun getWeather(city: String?): Call<WeatherData?>? {
         return weatherApi.getWeather(city, "metric", APP_ID)
+    }
+
+    fun get7DaysForecast(city: String?): Call<WeatherDataForecast?>? {
+        return weatherApi.get7DaysForecast(city, 7, APP_ID)
     }
 }

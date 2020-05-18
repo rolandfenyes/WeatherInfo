@@ -1,4 +1,4 @@
-package aut.bme.hu.weatherinfo.model
+package aut.bme.hu.weatherinfo.model.current
 
 class MainWeatherData {
     var temp: Float = 0f

@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import aut.bme.hu.weatherinfo.R
-import aut.bme.hu.weatherinfo.model.WeatherData
+import aut.bme.hu.weatherinfo.model.current.WeatherData
 import aut.bme.hu.weatherinfo.network.NetworkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_details.*
