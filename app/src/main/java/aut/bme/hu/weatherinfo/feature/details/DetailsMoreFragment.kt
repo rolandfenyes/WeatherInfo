@@ -1,16 +1,24 @@
 package aut.bme.hu.weatherinfo.feature.details
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import aut.bme.hu.weatherinfo.R
+import aut.bme.hu.weatherinfo.model.multipledays.WeatherDataForecast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.fragment_details_main.*
 import kotlinx.android.synthetic.main.fragment_details_more.*
 import java.time.LocalDate
@@ -40,51 +48,51 @@ class DetailsMoreFragment : Fragment() {
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (weatherDataHolder!!.getWeatherForecastData() != null) {
             showWeatherData()
+            loadChart()
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private fun loadChart() {
+        val weather = weatherDataHolder!!.getWeatherForecastData()
+        var entriesMax: ArrayList<Entry> = ArrayList()
+        entriesMax.add(Entry(0F, weather!!.daily!![0].temp!!.day))
+        entriesMax.add(Entry(1F, weather!!.daily!![1].temp!!.day))
+        entriesMax.add(Entry(2F, weather!!.daily!![2].temp!!.day))
+        entriesMax.add(Entry(3F, weather!!.daily!![3].temp!!.day))
+        entriesMax.add(Entry(4F, weather!!.daily!![4].temp!!.day))
+        entriesMax.add(Entry(5F, weather!!.daily!![5].temp!!.day))
+        entriesMax.add(Entry(6F, weather!!.daily!![6].temp!!.day))
+
+        var dataSet: LineDataSet = LineDataSet(entriesMax, "Max")
+        dataSet.setColor(Color.BLUE)
+        dataSet.label = "Max"
+
+        var lineData: LineData = LineData(dataSet)
+        lcSevenDaysTemperatureChanging.data = lineData
+        lcSevenDaysTemperatureChanging.invalidate()
+    }
+
     private fun showWeatherData() {
         val weather = weatherDataHolder!!.getWeatherForecastData()
-        tvDate!!.text = getDate(0)
-        tvMax!!.text = "" + weather!!.daily!![0].temp!!.day + "°C"
-        tvMin!!.text = "" + weather!!.daily!![0].temp!!.min + "°C"
-        setImageForIV(ivDayIcon ,weather!!.daily!![0].weather!![0].icon!!)
 
-        tvDate2!!.text = getDate(1)
-        tvMax2!!.text = "" + weather!!.daily!![1].temp!!.day + "°C"
-        tvMin2!!.text = "" + weather!!.daily!![1].temp!!.min + "°C"
-        setImageForIV(ivDayIcon2 ,weather!!.daily!![1].weather!![0].icon!!)
+        setLineData(tvDate, tvMax, tvMin, ivDayIcon, 0, weather!!)
+        setLineData(tvDate2, tvMax2, tvMin2, ivDayIcon2, 1, weather!!)
+        setLineData(tvDate3, tvMax3, tvMin3, ivDayIcon3, 2, weather!!)
+        setLineData(tvDate4, tvMax4, tvMin4, ivDayIcon4, 3, weather!!)
+        setLineData(tvDate5, tvMax5, tvMin5, ivDayIcon5, 4, weather!!)
+        setLineData(tvDate6, tvMax6, tvMin6, ivDayIcon6, 5, weather!!)
+        setLineData(tvDate7, tvMax7, tvMin7, ivDayIcon7, 6, weather!!)
+    }
 
-        tvDate3!!.text = getDate(2)
-        tvMax3!!.text = "" + weather!!.daily!![2].temp!!.day + "°C"
-        tvMin3!!.text = "" + weather!!.daily!![2].temp!!.min + "°C"
-        setImageForIV(ivDayIcon3 ,weather!!.daily!![2].weather!![0].icon!!)
-
-        tvDate4!!.text = getDate(3)
-        tvMax4!!.text = "" + weather!!.daily!![3].temp!!.day + "°C"
-        tvMin4!!.text = "" + weather!!.daily!![3].temp!!.min + "°C"
-        setImageForIV(ivDayIcon4 ,weather!!.daily!![3].weather!![0].icon!!)
-
-        tvDate5!!.text = getDate(4)
-        tvMax5!!.text = "" + weather!!.daily!![4].temp!!.day + "°C"
-        tvMin5!!.text = "" + weather!!.daily!![4].temp!!.min + "°C"
-        setImageForIV(ivDayIcon5 ,weather!!.daily!![4].weather!![0].icon!!)
-
-        tvDate6!!.text = getDate(5)
-        tvMax6!!.text = "" + weather!!.daily!![5].temp!!.day + "°C"
-        tvMin6!!.text = "" + weather!!.daily!![5].temp!!.min + "°C"
-        setImageForIV(ivDayIcon6 ,weather!!.daily!![5].weather!![0].icon!!)
-
-        tvDate7!!.text = getDate(6)
-        tvMax7!!.text = "" + weather!!.daily!![6].temp!!.day + "°C"
-        tvMin7!!.text = "" + weather!!.daily!![6].temp!!.min + "°C"
-        setImageForIV(ivDayIcon7 ,weather!!.daily!![6].weather!![0].icon!!)
+    private fun setLineData(dateText: TextView, maxText: TextView, minText: TextView, image: ImageView, index: Int, weather: WeatherDataForecast) {
+        dateText!!.text = getDate(index)
+        maxText!!.text = "" + weather!!.daily!![index].temp!!.day + "°C"
+        minText!!.text = "" + weather!!.daily!![index].temp!!.min + "°C"
+        setImageForIV(image ,weather!!.daily!![index].weather!![0].icon!!)
     }
 
     private fun setImageForIV(imageView: ImageView, icon: String) {
