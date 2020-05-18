@@ -1,6 +1,7 @@
 package aut.bme.hu.weatherinfo.network
 
 import aut.bme.hu.weatherinfo.model.current.WeatherData
+import aut.bme.hu.weatherinfo.model.hourly.WeatherDataHourly
 import aut.bme.hu.weatherinfo.model.multipledays.WeatherDataForecast
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -27,7 +28,11 @@ object NetworkManager {
         return weatherApi.getWeather(city, "metric", APP_ID)
     }
 
-    fun get7DaysForecast(lat: Float?, lon: Float): Call<WeatherDataForecast?>? {
+    fun get7DaysForecast(lat: Float, lon: Float): Call<WeatherDataForecast?>? {
         return weatherApi.get7DaysForecast(lat,lon, "hourly", APP_ID, "metric")
+    }
+
+    fun getHourlyForecast(lat: Float, lon: Float): Call<WeatherDataHourly?>? {
+        return weatherApi.getHourlyForecast(lat, lon, "daily", APP_ID, "metric")
     }
 }
