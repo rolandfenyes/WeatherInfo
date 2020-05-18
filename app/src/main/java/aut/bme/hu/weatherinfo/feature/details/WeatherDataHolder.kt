@@ -8,5 +8,5 @@ import aut.bme.hu.weatherinfo.model.multipledays.WeatherDataForecast
 interface WeatherDataHolder {
     fun getWeatherData(): WeatherData?
     fun getWeatherForecastData(): WeatherDataForecast?
-    fun getWeatherHourlytData(): WeatherDataHourly?
+    fun getWeatherHourlyData(): WeatherDataHourly?
 }

@@ -70,7 +70,7 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
         return weatherDataForecast
     }
 
-    override fun getWeatherHourlytData(): WeatherDataHourly? {
+    override fun getWeatherHourlyData(): WeatherDataHourly? {
         return hourlyWeatherData
     }
 
@@ -177,16 +177,17 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
         weatherData = receivedWeatherData
 
-        loadWeeklyWeatherData()
         loadHourlyWeatherData()
+        loadWeeklyWeatherData()
+
         val detailsPagerAdapter = DetailsPagerAdapter(this)
         mainViewPager.adapter = detailsPagerAdapter
     }
 
-    private fun displayWeatherDataForecast(recievedWeatherData: WeatherDataForecast?) {
-        weatherDataForecast = recievedWeatherData
+    private fun displayWeatherDataForecast(receivedWeatherData: WeatherDataForecast?) {
+        weatherDataForecast = receivedWeatherData
     }
-    private fun displayHourlyWeatherData(recievedWeatherData: WeatherDataHourly?) {
-        hourlyWeatherData = recievedWeatherData
+    private fun displayHourlyWeatherData(receivedWeatherData: WeatherDataHourly?) {
+        hourlyWeatherData = receivedWeatherData
     }
 }

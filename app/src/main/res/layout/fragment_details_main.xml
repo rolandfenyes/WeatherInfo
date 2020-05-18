@@ -33,7 +33,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:stretchColumns="0">
         <TableRow>
             <TextView
@@ -100,9 +100,11 @@
                 android:textSize="20dp"
                 tools:text="50 %"/>
         </TableRow>
-
     </TableLayout>
 
-
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lcHourlyWeather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
