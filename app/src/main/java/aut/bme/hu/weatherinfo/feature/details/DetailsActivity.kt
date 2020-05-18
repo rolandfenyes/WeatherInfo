@@ -174,20 +174,19 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
     }
 
     private fun displayWeatherData(receivedWeatherData: WeatherData?) {
-
         weatherData = receivedWeatherData
 
-        loadHourlyWeatherData()
         loadWeeklyWeatherData()
-
-        val detailsPagerAdapter = DetailsPagerAdapter(this)
-        mainViewPager.adapter = detailsPagerAdapter
     }
 
     private fun displayWeatherDataForecast(receivedWeatherData: WeatherDataForecast?) {
         weatherDataForecast = receivedWeatherData
+        loadHourlyWeatherData()
     }
     private fun displayHourlyWeatherData(receivedWeatherData: WeatherDataHourly?) {
         hourlyWeatherData = receivedWeatherData
+
+        val detailsPagerAdapter = DetailsPagerAdapter(this)
+        mainViewPager.adapter = detailsPagerAdapter
     }
 }
