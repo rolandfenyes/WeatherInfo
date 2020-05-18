@@ -18,6 +18,7 @@
     <string name="max_temperature">Max temperature</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
-    <string name="main">Main</string>
-    <string name="details">Details</string>
+    <string name="today">Today</string>
+    <string name="next_week">Next week</string>
+    <string name="next_month">Next month</string>
 </resources>

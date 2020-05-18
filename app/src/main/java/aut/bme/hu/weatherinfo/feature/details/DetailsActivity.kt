@@ -42,8 +42,8 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
         TabLayoutMediator(tab_layout, mainViewPager) { tab, position ->
             tab.text = when(position) {
-                0 -> getString(R.string.main)
-                1 -> getString(R.string.details)
+                0 -> getString(R.string.today)
+                1 -> getString(R.string.next_week)
                 else -> ""
             }
         }.attach()
