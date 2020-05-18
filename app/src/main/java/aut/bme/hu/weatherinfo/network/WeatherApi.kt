@@ -15,10 +15,12 @@ interface WeatherApi {
         @Query("appid") appId: String?
     ): Call<WeatherData?>?
 
-    @GET("/data/2.5/forecast/daily")
+    @GET("/data/2.5/onecall")
     fun get7DaysForecast(
-        @Query("q") cityName: String?,
-        @Query("cnt") cnt: Int?,
-        @Query("appid") appId: String?
+        @Query("lat") latitude: Float?,
+        @Query("lon") longtitude: Float?,
+        @Query("exclude") exclude: String?,
+        @Query("appid") appId: String?,
+        @Query("units") units: String?
     ): Call<WeatherDataForecast?>?
 }

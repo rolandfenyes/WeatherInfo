@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import aut.bme.hu.weatherinfo.R
 import aut.bme.hu.weatherinfo.model.current.WeatherData
+import aut.bme.hu.weatherinfo.model.multipledays.WeatherDataForecast
 import aut.bme.hu.weatherinfo.network.NetworkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_details.*
@@ -23,6 +24,7 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
 
     private var city: String? = null
     private var weatherData: WeatherData? = null
+    private var weatherDataForecast: WeatherDataForecast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,10 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
         return weatherData
     }
 
+    override fun getWeatherForecastData(): WeatherDataForecast? {
+        return weatherDataForecast
+    }
+
     private fun loadWeatherData(){
         NetworkManager.getWeather(city)!!.enqueue(object : Callback<WeatherData?> {
 
@@ -95,11 +101,49 @@ class DetailsActivity : AppCompatActivity(), WeatherDataHolder {
         })
     }
 
+    private fun loadWeeklyWeatherData() {
+        NetworkManager.get7DaysForecast(weatherData!!.coord!!.lat, weatherData!!.coord!!.lon)!!.enqueue(object : Callback<WeatherDataForecast?> {
+
+            override fun onResponse(
+                call: Call<WeatherDataForecast?>,
+                response: Response<WeatherDataForecast?>
+            ) {
+                Log.d(TAG, "onResponse: " + response.code())
+                if (response.isSuccessful) {
+                    displayWeatherDataForecast(response.body())
+                } else {
+                    Toast.makeText(
+                        this@DetailsActivity,
+                        "Error: " + response.message(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(
+                call: Call<WeatherDataForecast?>,
+                throwable: Throwable
+            ) {
+                throwable.printStackTrace()
+                Toast.makeText(
+                    this@DetailsActivity,
+                    "Network request error occurred, check LOG",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
     private fun displayWeatherData(receivedWeatherData: WeatherData?) {
 
         weatherData = receivedWeatherData
 
+        loadWeeklyWeatherData()
         val detailsPagerAdapter = DetailsPagerAdapter(this)
         mainViewPager.adapter = detailsPagerAdapter
+    }
+
+    private fun displayWeatherDataForecast(recievedWeatherData: WeatherDataForecast?) {
+        weatherDataForecast = recievedWeatherData
     }
 }

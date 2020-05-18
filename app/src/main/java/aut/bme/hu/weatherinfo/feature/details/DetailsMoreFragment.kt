@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import aut.bme.hu.weatherinfo.R
-import kotlinx.android.synthetic.main.fragment_details_more.*
+import kotlinx.android.synthetic.main.item_day.*
 
 class DetailsMoreFragment : Fragment() {
 
@@ -34,17 +34,13 @@ class DetailsMoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (weatherDataHolder!!.getWeatherData() != null) {
+        if (weatherDataHolder!!.getWeatherForecastData() != null) {
             showWeatherData()
         }
     }
 
     private fun showWeatherData() {
-        val weatherData = weatherDataHolder!!.getWeatherData()
-        tvTemperature!!.text = "" + weatherData?.main!!.temp
-        tvMinTemp!!.text = "" + weatherData?.main!!.temp_min
-        tvMaxTemp!!.text = "" + weatherData?.main!!.temp_max
-        tvPressure!!.text = "" + weatherData?.main!!.pressure
-        tvHumidity!!.text = "" + weatherData?.main!!.humidity
+        val weather = weatherDataHolder!!.getWeatherForecastData()
+        tvMax!!.text = "" + weather!!.daily!![0].temp!!.day
     }
 }

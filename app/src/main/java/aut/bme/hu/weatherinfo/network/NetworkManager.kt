@@ -27,7 +27,7 @@ object NetworkManager {
         return weatherApi.getWeather(city, "metric", APP_ID)
     }
 
-    fun get7DaysForecast(city: String?): Call<WeatherDataForecast?>? {
-        return weatherApi.get7DaysForecast(city, 7, APP_ID)
+    fun get7DaysForecast(lat: Float?, lon: Float): Call<WeatherDataForecast?>? {
+        return weatherApi.get7DaysForecast(lat,lon, "hourly", APP_ID, "metric")
     }
 }
