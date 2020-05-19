@@ -107,7 +107,7 @@ class DetailsMoreFragment : Fragment() {
         val today = calendar.get(Calendar.DAY_OF_WEEK)
         var dayOfWeek = today + plusDay
         if (dayOfWeek >= 8) {
-            dayOfWeek = 1
+            dayOfWeek = dayOfWeek - 7
         }
         return when (dayOfWeek) {
             Calendar.MONDAY -> "Mon"
